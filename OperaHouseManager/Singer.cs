@@ -10,7 +10,7 @@ namespace OperaHouseManager
     {
         public string Name { get; set; }
         public byte Age { get; set; }
-        public SingerType Type { get; set; }
+        public VoiceType Type { get; set; }
         public SingerTier Tier { get; set; }
         private byte SingerHappiness;
         private sbyte SingerLoyalty;
@@ -24,6 +24,11 @@ namespace OperaHouseManager
                 if (value >=250)
                 {
                     SingerHappiness = 250;
+                }
+
+                if (value <1)
+                {
+                    SingerHappiness = 1;
                 }
                 else
                 {
@@ -51,11 +56,11 @@ namespace OperaHouseManager
 
         public Singer() { }
         public Singer(string name)
-            : this(name, 0, SingerType.Undefined, 0, 0, SingerTier.Undefined) { }
-        public Singer(string name, byte age, SingerType type)
+            : this(name, 0, VoiceType.Undefined, 0, 0, SingerTier.Undefined) { }
+        public Singer(string name, byte age, VoiceType type)
         : this(name, age, type, 0, 0, SingerTier.Undefined) { }
 
-        public Singer(string name, byte age, SingerType type, sbyte loyalty, byte happiness, SingerTier tier)
+        public Singer(string name, byte age, VoiceType type, sbyte loyalty, byte happiness, SingerTier tier)
         {
             Name = name;
 
@@ -66,10 +71,10 @@ namespace OperaHouseManager
             }
             else { Age = age; }
 
-            if (type == SingerType.Undefined)
+            if (type == VoiceType.Undefined)
             {
-                byte newType = (byte)Util.GetRandomNumber(1, Enum.GetNames(typeof(SingerType)).Length);
-                Type = (SingerType)newType;
+                byte newType = (byte)Util.GetRandomNumber(1, Enum.GetNames(typeof(VoiceType)).Length);
+                Type = (VoiceType)newType;
             }
             else { Type = type; }
 
@@ -113,18 +118,61 @@ namespace OperaHouseManager
             Console.WriteLine("Tier: {0}\n", Tier);
         }
 
+        public void IncreaseLoyalty()
+        {
+            if (SingerLoyalty >= 125) { SingerLoyalty = 125; }
+            else SingerLoyalty++;
+        }
+
+        public void DecreaseLoyalty()
+        {
+            if (SingerLoyalty <= -125) { SingerLoyalty = -125; }
+            else SingerLoyalty--;
+        }
+
+        public void IncreaseHappiness()
+        {
+            if (SingerHappiness >= 250) { SingerLoyalty = 250; }
+            else SingerHappiness++;
+        }
+
+        public void DecreaseHappiness()
+        {
+            if (SingerHappiness <= 1) { SingerHappiness = 1; }
+            else SingerHappiness--;
+        }
+
+        public void IncreaseAge() {Age++;}
+
+        public void DecreaseAge() {Age--;}
+
+        public void IncreaseTier()
+        {
+            if (Tier >= SingerTier.International)
+            {
+                Tier = SingerTier.International;
+            }
+
+            else Tier++;
+        }
+
+        public void DecreaseTier()
+        {
+            if (Tier <= SingerTier.Unmanaged)
+            {
+                Tier = SingerTier.Unmanaged;
+            }
+            else Tier--;
+        }
+
+        
+
     }
 
 
-    enum SingerTier
-    {
-        Undefined, YoungArtist, Unmanaged, Managed, Regional, National, International
-    }
 
-    enum SingerType
-    {
-        Undefined, Bass, BassBaritone,Baritone,Tenor,Countertenor,Contralto,Mezzo,Soprano
-    }
+
+
     /* Loyalty = (sbyte)(rnd.Next(0, 50)-25);
  SingerHappiness = (byte)rnd.Next(50, 200);
  byte tier = (byte)rnd.Next(0, Enum.GetNames(typeof(SingerTier)).Length);

@@ -10,6 +10,7 @@ namespace OperaHouseManager
     {
         static void Main(string[] args)
         {
+            
             //   Singer LeeSteiner = new Singer { Name = "Lee Steiner", Age = 31, Type = "Tenor" };
             Singer LeeSteiner = new Singer("Lee Steiner", 31, SingerType.Tenor);
             LeeSteiner.DisplayStats();
