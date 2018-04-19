@@ -132,7 +132,7 @@ namespace OperaHouseManager
 
         public void IncreaseHappiness()
         {
-            if (SingerHappiness >= 250) { SingerLoyalty = 250; }
+            if (SingerHappiness >= 250) { SingerHappiness = 250; }
             else SingerHappiness++;
         }
 

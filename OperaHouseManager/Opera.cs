@@ -36,7 +36,7 @@ namespace OperaHouseManager
 
         public Opera() { }
         public Opera(string name)
-            : this(name, Language.Undefined, 0, false, 0, new List<Role>) { }
+            : this(name, Language.Undefined, 0, false, 0, new List<Role>()) { }
         public Opera(string name, Language language, byte popularity, bool chorusNeeded, byte chorusSize, List<Role> roles)
         {
             Name = name;
@@ -45,6 +45,30 @@ namespace OperaHouseManager
             ChorusNeeded = chorusNeeded;
             ChorusSize = chorusSize;
             Roles = roles;
+        }
+
+        public void AddRole(string name, VoiceType voiceType, RoleClass roleClass)
+        {
+            Role role = new Role(name, voiceType, roleClass);
+            Roles.Add(role);
+        }
+
+        public void IncreasePopularity()
+        {
+            if (Popularity >= 250)
+            {
+                Popularity = 250;
+            }
+            else Popularity++;
+        }
+
+        public void DecreasePopularity()
+        {
+            if (Popularity <= 5)
+            {
+                Popularity = 5;
+            }
+            else Popularity--;
         }
     }
 }

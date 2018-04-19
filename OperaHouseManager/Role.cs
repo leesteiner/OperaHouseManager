@@ -12,5 +12,15 @@ namespace OperaHouseManager
         public VoiceType voiceType { get; set; }
         public RoleClass roleClass { get; set; }
 
+
+        public Role() { }
+        public Role(string name)
+            : this(name, VoiceType.Undefined, RoleClass.Undefined) { }
+        public Role(string name, VoiceType voicetype, RoleClass roleclass)
+        {
+            Name = name;
+            voiceType = voicetype;
+            roleClass = roleclass;
+        }
     }
 }
