@@ -15,6 +15,7 @@ namespace OperaHouseManager
         private byte SingerHappiness;
         private sbyte SingerLoyalty;
 
+
         public byte Happiness
         {
             get

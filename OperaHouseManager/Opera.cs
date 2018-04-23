@@ -9,6 +9,7 @@ namespace OperaHouseManager
     class Opera
     {
         public string Name { get; set; }
+        public string ComposerName { get; set; }
         public Language Language { get; set; }
         public byte Popularity { get; set; }
         public bool ChorusNeeded { get; set; }
@@ -35,11 +36,12 @@ namespace OperaHouseManager
 
 
         public Opera() { }
-        public Opera(string name)
-            : this(name, Language.Undefined, 0, false, 0, new List<Role>()) { }
-        public Opera(string name, Language language, byte popularity, bool chorusNeeded, byte chorusSize, List<Role> roles)
+        public Opera(string name, string compName)
+            : this(name, compName, Language.Undefined, 0, false, 0, new List<Role>()) { }
+        public Opera(string name, string compName, Language language, byte popularity, bool chorusNeeded, byte chorusSize, List<Role> roles)
         {
             Name = name;
+            ComposerName = compName;
             Language = language;
             Popularity = popularity;
             ChorusNeeded = chorusNeeded;

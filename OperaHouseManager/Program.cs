@@ -21,15 +21,17 @@ namespace OperaHouseManager
             Console.ResetColor();
             City playerCity = SetCity();
             int PlayerMoney = playerCity.StartingMoney;
-            Console.WriteLine($"Today is: {Date.ToShortDateString()}.");
+
             Console.WriteLine("Your city is: {0}.", playerCity.CityName);
 
             do
             {
+                Console.WriteLine($"Today is: {Date.ToShortDateString()}.");
                 Console.WriteLine("Choose an option:");
                 Console.WriteLine("1. View Finances");
                 Console.WriteLine("2. Program Opera");
-                Console.WriteLine("3. Exit Game");
+                Console.WriteLine("3. Next Week");
+                Console.WriteLine("4. Exit Game");
                 SelectedOption = Console.ReadLine();
                 if (int.TryParse(SelectedOption, out int choice))
                 {
@@ -42,13 +44,16 @@ namespace OperaHouseManager
                             ProgramOpera();
                             break;
                         case 3:
+                            IncrementWeek();
+                            break;
+                        case 4:
                             Environment.Exit(0);
                             break;
                         default:
                             break;
                     }
                 }
-            } while (int.Parse(SelectedOption) != 3);
+            } while (int.Parse(SelectedOption) != 4);
 
 
 
@@ -138,8 +143,28 @@ namespace OperaHouseManager
                 return Cities;
             }
 
-            void ViewFinances() { Console.WriteLine("In View Finances"); }
+            void ViewFinances()
+            {
+                Console.WriteLine("In View Finances");
+                Console.WriteLine("Available funds: {0}", PlayerMoney);
+            }
             void ProgramOpera() { Console.WriteLine("In Program Opera"); }
+            void IncrementWeek()
+            {
+                Date = Date.AddDays(7);
+                AddWeeklyRevenue();
+                SubtractWeeklyExpenses();
+            }
+
+            void AddWeeklyRevenue()
+            {
+                PlayerMoney += 100;
+            }
+
+            void SubtractWeeklyExpenses()
+            {
+                PlayerMoney -= 2000;
+            }
         }
 
         
