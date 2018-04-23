@@ -21,6 +21,11 @@ namespace OperaHouseManager
             Console.ResetColor();
             City playerCity = SetCity();
             int PlayerMoney = playerCity.StartingMoney;
+            List<Employee> CurrentEmployees = new List<Employee> { };
+            Singer Lee = new Singer("Lee Steiner", 31, VoiceType.Tenor);
+            Employee Sandy = new Employee("Sandy Taylor", "Executive", 2000, 0);
+            CurrentEmployees.Add(Lee);
+            CurrentEmployees.Add(Sandy);
 
             Console.WriteLine("Your city is: {0}.", playerCity.CityName);
 
@@ -29,9 +34,10 @@ namespace OperaHouseManager
                 Console.WriteLine($"Today is: {Date.ToShortDateString()}.");
                 Console.WriteLine("Choose an option:");
                 Console.WriteLine("1. View Finances");
-                Console.WriteLine("2. Program Opera");
-                Console.WriteLine("3. Next Week");
-                Console.WriteLine("4. Exit Game");
+                Console.WriteLine("2. View Employees");
+                Console.WriteLine("3. Program Opera");
+                Console.WriteLine("4. Next Week");
+                Console.WriteLine("5. Exit Game");
                 SelectedOption = Console.ReadLine();
                 if (int.TryParse(SelectedOption, out int choice))
                 {
@@ -41,19 +47,22 @@ namespace OperaHouseManager
                             ViewFinances();
                             break;
                         case 2:
-                            ProgramOpera();
+                            ViewEmployees();
                             break;
                         case 3:
-                            IncrementWeek();
+                            ProgramOpera();
                             break;
                         case 4:
+                            IncrementWeek();
+                            break;
+                        case 5:
                             Environment.Exit(0);
                             break;
                         default:
                             break;
                     }
                 }
-            } while (int.Parse(SelectedOption) != 4);
+            } while (int.Parse(SelectedOption) != 5);
 
 
 
@@ -69,7 +78,7 @@ namespace OperaHouseManager
             }
             */
 
-            Opera MagicFlute = new Opera("Magic Flute", Language.German, 100, true, 20, new List<Role>());
+            Opera MagicFlute = new Opera("Magic Flute", "Mozart", Language.German, 100, true, 20, new List<Role>());
          //   MagicFlute.DisplayStats();
          //   Console.WriteLine("Adding in three roles: ");
             MagicFlute.AddRole("Tamino", VoiceType.Tenor, RoleClass.Leading);
@@ -164,6 +173,25 @@ namespace OperaHouseManager
             void SubtractWeeklyExpenses()
             {
                 PlayerMoney -= 2000;
+            }
+
+            void ViewEmployees()
+            {
+                int i = 0;
+                foreach (Employee e in CurrentEmployees)
+                {
+                    if (e.Position == "Singer")
+                    {
+                        Console.WriteLine("{0}. {1}, {2} - {3}", i, e.Name, e.Position, "Opera List here!");
+                    }
+                    else { Console.WriteLine("{0}. {1}, {2}", i, e.Name, e.Position); }
+
+                    i++;
+                }
+            }
+            void HireEmployees()
+            {
+
             }
         }
 

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace OperaHouseManager
 {
-    class Singer
+    class Singer : Employee
     {
-        public string Name { get; set; }
+        public List<Opera> CurrentProductions { get; set; }
         public byte Age { get; set; }
         public VoiceType Type { get; set; }
         public SingerTier Tier { get; set; }
@@ -64,7 +64,8 @@ namespace OperaHouseManager
         public Singer(string name, byte age, VoiceType type, sbyte loyalty, byte happiness, SingerTier tier)
         {
             Name = name;
-
+            Position = "Singer";
+            CurrentProductions = new List<Opera> { };
             if (age == 0)
             {
                 byte newAge = (byte)Util.GetRandomNumber(20, 70);
