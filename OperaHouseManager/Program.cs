@@ -21,11 +21,11 @@ namespace OperaHouseManager
             Console.ResetColor();
             City playerCity = SetCity();
             int PlayerMoney = playerCity.StartingMoney;
-            List<Employee> CurrentEmployees = new List<Employee> { };
+            List<Employee> CurrentFullTimeEmployees = new List<Employee> { };
             Singer Lee = new Singer("Lee Steiner", 31, VoiceType.Tenor);
             Employee Sandy = new Employee("Sandy Taylor", "Executive", 2000, 0);
-            CurrentEmployees.Add(Lee);
-            CurrentEmployees.Add(Sandy);
+            CurrentFullTimeEmployees.Add(Lee);
+            CurrentFullTimeEmployees.Add(Sandy);
 
             Console.WriteLine("Your city is: {0}.", playerCity.CityName);
 
@@ -178,7 +178,7 @@ namespace OperaHouseManager
             void ViewEmployees()
             {
                 int i = 0;
-                foreach (Employee e in CurrentEmployees)
+                foreach (Employee e in CurrentFullTimeEmployees)
                 {
                     if (e.Position == "Singer")
                     {
@@ -189,8 +189,17 @@ namespace OperaHouseManager
                     i++;
                 }
             }
-            void HireEmployees()
+            void HireOfficeEmployees()
             {
+                byte HireOption = 0;
+                do
+                {
+                    Console.WriteLine("Hire Office Employees:");
+                    
+                
+                }
+                while (HireOption!=5);
+
 
             }
         }
